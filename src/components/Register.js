@@ -66,7 +66,7 @@ const Register = ({ setShowInfoTooltip, onRegisterSuccess }) => {
             required
             autoComplete="off"
             className="auth__input"
-            type="text"
+            type="password"
             minLength="2"
             maxLength="200"
             placeholder="Пароль"

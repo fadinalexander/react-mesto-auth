@@ -7,14 +7,11 @@ function EditAvatarPopup({ isOpen, onClose, onUpdateAvatar }) {
   const [isFormSubmitted, setIsFormSubmitted] = React.useState(false);
 
   React.useEffect(() => {
-    if (isFormSubmitted) {
-      const clearFormTimeout = setTimeout(() => {
-        setAvatar("");
-        setIsFormSubmitted(false);
-      }, 1000);
-      return () => clearTimeout(clearFormTimeout);
+    if (isOpen && isFormSubmitted) {
+      setAvatar("");
+      setIsFormSubmitted(false);
     }
-  }, [isFormSubmitted]);
+  }, [isOpen]);
 
   function handleSubmit(evt) {
     evt.preventDefault();

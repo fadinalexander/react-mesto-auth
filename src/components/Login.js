@@ -1,10 +1,9 @@
 import React from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import "./styles/Login.css";
 import * as mestoAuth from "../utils/mestoAuth.js";
-import Header from "./Header";
 
-const Login = ({ handleLogin }) => {
+const Login = ({ handleLogin, setUserData }) => {
   const [formValue, setFormValue] = React.useState({
     email: "",
     password: "",
@@ -28,8 +27,12 @@ const Login = ({ handleLogin }) => {
     mestoAuth
       .authorization(email, password)
       .then((data) => {
-        handleLogin();
-        navigate("/mesto");
+        handleLogin(data);
+        localStorage.setItem("jwt", data.token);
+        mestoAuth.getContent(data.token).then((userData) => {
+          setUserData(userData);
+          navigate("/mesto");
+        });
       })
       .catch((err) => {
         setErrorMessage(err);
@@ -38,13 +41,6 @@ const Login = ({ handleLogin }) => {
 
   return (
     <div className="page">
-      {/* <Header>
-        <div className="header__sign-in">
-          <Link to="/sign-up" className="header__sign-in_link">
-            Регистрация
-          </Link>
-        </div>
-      </Header> */}
       <div className="auth__container">
         <h2 className="auth__header">Вход</h2>
         <form className="auth__form" onSubmit={handleSubmit}>
@@ -67,7 +63,7 @@ const Login = ({ handleLogin }) => {
             required
             autoComplete="off"
             className="auth__input"
-            type="text"
+            type="password"
             minLength="2"
             maxLength="200"
             placeholder="Пароль"

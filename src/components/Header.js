@@ -29,9 +29,9 @@ function Header({ userData }) {
               </Link>
             </li>
           )}
-          {location.pathname === "/mesto" && (
+          {location.pathname === "/mesto" && userData && (
             <>
-              <p className="header__user-id">{userData.data?.email}</p>
+              <p className="header__user-id">{userData.email}</p>
               <li>
                 <button onClick={exit} className="header__btn-exit">
                   Выйти

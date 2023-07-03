@@ -7,15 +7,12 @@ function AddPlacePopup({ isOpen, onClose, onAddPlace }) {
   const [isFormSubmitted, setIsFormSubmitted] = React.useState(false);
 
   React.useEffect(() => {
-    if (isFormSubmitted) {
-      const clearFormTimeout = setTimeout(() => {
-        setName("");
-        setLink("");
-        setIsFormSubmitted(false);
-      }, 1000);
-      return () => clearTimeout(clearFormTimeout);
+    if (isOpen && isFormSubmitted) {
+      setIsFormSubmitted(false);
+      setName("");
+      setLink("");
     }
-  }, [isFormSubmitted]);
+  }, [isOpen]);
 
   function handleChangeName(evt) {
     setName(evt.target.value);

@@ -185,7 +185,7 @@ function App() {
   return (
     <CurrentUserContext.Provider value={currentUser}>
       <div className="page">
-        <Header userData={userData} />
+        <Header userData={userData.data} />
         <Routes>
           <Route
             path="/sign-up"
@@ -198,7 +198,12 @@ function App() {
           />
           <Route
             path="/sign-in"
-            element={<Login handleLogin={() => setIsLoggedIn(true)} />}
+            element={
+              <Login
+                handleLogin={() => setIsLoggedIn(true)}
+                setUserData={setUserData}
+              />
+            }
           />
 
           <Route
