@@ -27,12 +27,9 @@ const Login = ({ handleLogin, setUserData }) => {
     mestoAuth
       .authorization(email, password)
       .then((data) => {
-        handleLogin(data);
+        handleLogin({ data: { email } });
         localStorage.setItem("jwt", data.token);
-        mestoAuth.getContent(data.token).then((userData) => {
-          setUserData(userData);
-          navigate("/mesto");
-        });
+        navigate("/mesto");
       })
       .catch((err) => {
         setErrorMessage(err);

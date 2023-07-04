@@ -47,6 +47,11 @@ function App() {
   const [selectedCard, setSelectedCard] = React.useState(null);
   const [isImagePopupOpen, setIsImagePopupOpen] = React.useState(false);
 
+  const handleLogin = (userData) => {
+    setIsLoggedIn(true);
+    setUserData(userData);
+  };
+
   const checkToken = () => {
     const jwt = localStorage.getItem("jwt");
     mestoAuth
@@ -196,10 +201,7 @@ function App() {
           <Route
             path="/sign-in"
             element={
-              <Login
-                handleLogin={() => setIsLoggedIn(true)}
-                setUserData={setUserData}
-              />
+              <Login handleLogin={handleLogin} setUserData={setUserData} />
             }
           />
 
