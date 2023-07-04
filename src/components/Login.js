@@ -10,7 +10,6 @@ const Login = ({ handleLogin, setUserData }) => {
   });
 
   const navigate = useNavigate();
-
   const [errorMessage, setErrorMessage] = React.useState("");
 
   const handleChange = (evt) => {

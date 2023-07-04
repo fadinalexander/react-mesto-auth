@@ -21,7 +21,6 @@ import Register from "./Register";
 import Login from "./Login";
 import ProtectedRoute from "./ProtectedRoute";
 import InfoToolTip from "./InfoToolTip";
-
 import * as mestoAuth from "../utils/mestoAuth";
 
 function App() {
@@ -33,6 +32,7 @@ function App() {
 
   const navigate = useNavigate();
   const location = useLocation();
+  
   const [isLoggedIn, setIsLoggedIn] = React.useState(false);
 
   const [userData, setUserData] = React.useState({});
